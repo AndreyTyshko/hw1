@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <string name="app_name">Погода</string>
+    <string name="button">передать</string>
+    <string name="city">Город</string>
+    <string name="typeOfWear">Солнечно</string>
+    <string name="weather">погода</string>
+    <string name="hint" >город</string>
+    <string name="send" >передать</string>
+    <string name="Ветер">ветер</string>
+    <string name="textViewWind">TextView</string>
+
+</resources>

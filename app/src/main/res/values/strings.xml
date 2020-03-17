@@ -1,0 +1,33 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="weather">Weather</string>
+    <dimen name="weather">25sp</dimen>
+
+    <string name="degree" translatable="false">150</string>
+    <dimen name="degree">120sp</dimen>
+
+    <string name="celcium" translatable="false">&#x2103;</string>
+    <dimen name="celcium">40sp</dimen>
+
+    <string name="textViewDate" translatable="false">dd mm yy</string>
+    <dimen name="textViewDate">25sp</dimen>
+
+    <string name="hint">hint</string>
+
+    <string name="button">send</string>
+    <string name="city">TextView</string>
+    <string name="send">send</string>
+    <dimen name="typeOfWear">25sp</dimen>
+    <string name="typeOfWear">sunny</string>
+    <string name="Ветер">wind</string>
+    <string name="textViewWind">TextView</string>
+
+
+    <string-array name="cityList">
+        <item>Барсик</item>
+        <item>Мурзик</item>
+        <item>Васька</item>
+        <item>Рыжик</item>
+    </string-array>
+
+</resources>
