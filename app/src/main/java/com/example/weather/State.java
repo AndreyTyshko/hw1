@@ -1,16 +1,24 @@
 package com.example.weather;
 
+import android.support.annotation.NonNull;
+
 public class State {
 
 private String name;
 private  String capital;
 private  int flagResource;
 
-public State(String name, String capital, int flagResource){
+
+
+
+    public State(String name, String capital, int flagResource){
     this.name=name;
     this.capital=capital;
     this.flagResource=flagResource;
+
+
 }
+
 
 
     public String getName() {
@@ -36,4 +44,5 @@ public State(String name, String capital, int flagResource){
     public void setFlagResource(int flagResource) {
         this.flagResource = flagResource;
     }
+
 }

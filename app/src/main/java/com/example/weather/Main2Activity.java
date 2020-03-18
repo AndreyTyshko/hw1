@@ -1,6 +1,7 @@
 package com.example.weather;
 
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.design.widget.TextInputEditText;
 //import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -109,12 +110,18 @@ public class Main2Activity extends AppCompatActivity {
 */
 
 
-    public void stateList(final Spinner spinner) {
+
+
+    public void stateList(Spinner countriesList) {
+
+
+
         StateAdapter stateAdapter = new StateAdapter(this, R.layout.list_item, states);
-        countriesList = (Spinner) findViewById(R.id.countriesList);
-        countriesList.setAdapter(stateAdapter);
-       stateAdapter.setDropDownViewResource(R.layout.list_item);
-        //State state = (State) ((Spinner) findViewById(R.id.countriesList)).getSelectedItem();
+        this.countriesList = findViewById(R.id.countriesList);
+        this.countriesList.setAdapter(stateAdapter);
+
+       // stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        State state = (State) ((Spinner) findViewById(R.id.countriesList)).getSelectedItem();
 
 
 

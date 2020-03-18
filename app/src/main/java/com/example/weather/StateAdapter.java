@@ -1,5 +1,7 @@
 package com.example.weather;
 
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.widget.ArrayAdapter;
 
 import android.content.Context;
@@ -24,6 +26,14 @@ public class StateAdapter extends ArrayAdapter {
         this.states = states;
         this.layout=resource;
         this.inflater=LayoutInflater.from(context);
+    }
+
+
+
+
+    @Override
+    public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+        return getView(position, convertView, parent);
     }
 
 
