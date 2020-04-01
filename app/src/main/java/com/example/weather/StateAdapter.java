@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class StateAdapter extends ArrayAdapter {
@@ -24,12 +25,16 @@ public class StateAdapter extends ArrayAdapter {
         super(context, resource, states);
 
         this.states = states;
-        this.layout=resource;
-        this.inflater=LayoutInflater.from(context);
+        this.layout = resource;
+        this.inflater = LayoutInflater.from(context);
     }
 
 
-
+    @NonNull
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 
     @Override
     public View getDropDownView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
@@ -37,10 +42,17 @@ public class StateAdapter extends ArrayAdapter {
     }
 
 
+    @Override
+    public long getItemId(int position) {
+        return super.getItemId(position);
+    }
 
-    public View getView (int position, View convertView, ViewGroup parent) {
 
-        View view =inflater.inflate(this.layout, parent, false);
+
+
+    public View getView(int position, View convertView, ViewGroup parent) {
+
+        View view = inflater.inflate(this.layout, parent, false);
         ImageView flagView = view.findViewById(R.id.flag);
         TextView nameView = view.findViewById(R.id.name);
         TextView capitalView = view.findViewById(R.id.capital);

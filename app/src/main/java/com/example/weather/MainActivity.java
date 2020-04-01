@@ -1,16 +1,13 @@
 package com.example.weather;
 
-import android.os.Parcel;
-import android.support.v7.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
+import android.view.ViewGroup;
 import android.widget.ListView;
-import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
-
-import org.w3c.dom.Text;
 
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -22,6 +19,9 @@ import java.util.Locale;
 import static com.example.weather.Main2Activity.TEXT;
 import static com.example.weather.Main2Activity.TEXT1;
 
+//import static com.example.weather.Main2Activity.POSITION;
+//import static com.example.weather.Main2Activity.TEXT1;
+
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,10 +30,17 @@ public class MainActivity extends AppCompatActivity {
     ListView countriesList;
     private Object State;
 
+    String country;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+
+        TextView textView1 = new TextView(this);
+        textView1.setTextSize(20);
+        textView1.setPadding(16, 16, 16, 16);
 
 
         TextView cityText = findViewById(R.id.city);
@@ -42,6 +49,7 @@ public class MainActivity extends AppCompatActivity {
 
         TextView textView = findViewById(R.id.typeOfWeather);
         textView.setText(tow);
+
 
 
         TextView textViewDate = findViewById(R.id.textViewDate);
@@ -54,45 +62,41 @@ public class MainActivity extends AppCompatActivity {
         textViewDate.setText(dateText);
 
 
-
-
-
-
         Send send = (Send) getIntent().getExtras().getSerializable(TEXT);
         cityText.setText(send.textCity);
         textViewWind.setText(send.windText);
 
 
+       Intent intent = getIntent();
 
-       // countriesList= (ListView) getIntent().getExtras().getSerializable(TEXT1);
-        //String text = getIntent().getExtras().getString(TEXT1);
-       /* Bundle extras = getIntent().getExtras();
-        states = extras.getStringArray(TEXT1);*/
-        // countriesList = getIntent().getParcelableExtra(TEXT1);
-      // countriesList = (ListView) getIntent().getExtras().getSerializable(TEXT1);
+      ArrayList<String> arrayFromIntent =(ArrayList<String>) getIntent().getSerializableExtra("list");
 
-        stateList(getParent());
+        country = intent.getStringExtra(TEXT1);
+
+        Toast toast1 = Toast.makeText(getApplicationContext(), country, Toast.LENGTH_SHORT);
+        toast1.show();
+       // Integer text = Integer.valueOf(country);
+
+
+        stateList();
         setInitialData();
     }
 
 
-    public void stateList(Object state) {
+    public void stateList() {
         countriesList = findViewById(R.id.countriesList);
         StateAdapter stateAdapter = new StateAdapter(this, R.layout.list_item, states);
 
-        countriesList.setAdapter(stateAdapter);
 
-        AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+        //stateAdapter.getPosition(2);
 
-                State selectedState = (State) parent.getItemAtPosition(position);
-                Toast.makeText(getApplicationContext(), "Был выбран пункт " + selectedState.getName(), Toast.LENGTH_SHORT).show();
+      countriesList.setAdapter(stateAdapter);
+//stateAdapter.getView(2,View convertView, ViewGroup parent);
 
-            }
-        };
+       //countriesList.getItemAtPosition(Integer.parseInt(country));
 
-        countriesList.setOnItemClickListener(itemListener);
+
+
     }
 
 
@@ -104,7 +108,6 @@ public class MainActivity extends AppCompatActivity {
         states.add(new State("Чили", "Сантьяго", R.drawable.chile));
 
     }
-
 
 
 }

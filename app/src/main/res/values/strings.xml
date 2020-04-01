@@ -24,10 +24,10 @@
 
 
     <string-array name="cityList">
-        <item>Барсик</item>
-        <item>Мурзик</item>
-        <item>Васька</item>
-        <item>Рыжик</item>
+        <item>Новосибирск</item>
+        <item>Омск</item>
+        <item>Томск</item>
+        <item>Кемерово</item>
     </string-array>
 
 </resources>

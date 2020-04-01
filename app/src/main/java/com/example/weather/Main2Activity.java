@@ -1,31 +1,27 @@
 package com.example.weather;
 
 import android.content.Intent;
-import android.support.annotation.NonNull;
-import android.support.design.widget.TextInputEditText;
-//import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.CompoundButton;
-import android.widget.ListView;
 import android.widget.Spinner;
 import android.widget.Switch;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-import static java.security.AccessController.getContext;
+//import android.support.v7.app.AppCompatActivity;
 
 public class Main2Activity extends AppCompatActivity {
 
     public final static String TEXT = "Text";
     public final static String TEXT1 = "Text1";
+    private static String ITEM = "item";
+    //private static final String TEXT1 = ;
     public String city;
     public String wind;
     public String txtSwitch;
@@ -35,9 +31,11 @@ public class Main2Activity extends AppCompatActivity {
 
     private String spinnerText;
 
-    public List<State> states = new ArrayList<>();
+    public ArrayList<State> states = new ArrayList<>();
     Spinner countriesList;
-    private int position;
+    // int position;
+    Intent intent;
+    public int ss;
 
 
     @Override
@@ -55,7 +53,7 @@ public class Main2Activity extends AppCompatActivity {
 
         setInitialData();
 
-        stateList(countriesList);
+        stateList();
 //countriesList.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) this);
 
     }
@@ -68,62 +66,51 @@ public class Main2Activity extends AppCompatActivity {
         }
 
         city = cityText.getText().toString();
-        Intent intent = new Intent(this, MainActivity.class);
+        intent = new Intent(this.getApplicationContext(), MainActivity.class);
+
 
         intent.putExtra(TEXT, send);
-        countriesList.getItemAtPosition(position);
-        //  intent.putExtra(TEXT1, position);
+        intent.putExtra(TEXT1, String.valueOf(ss));
 
+        intent.putExtra("list", states);
 
-        //intent.putExtra("text1", String.valueOf(countriesList.getContext()));
         if (city.equals("")) {
-            showToast(v);
+           showToast(v);
         } else startActivity(intent);
 
 
-       /* Intent intent1 = new Intent(Main2Activity.this, MainActivity.class);
-        //states.get(position);
-        //states.get()
-        //State selectedState = (State) parent.getItemAtPosition(position);
-
-        startActivity(intent1);*/
-
     }
-   /* public void stateList() {
-        countriesList = (Spinner) findViewById(R.id.countriesList);
-        StateAdapter stateAdapter = new StateAdapter(this, R.layout.list_item, states);
 
-        countriesList.setAdapter(stateAdapter);
 
-        AdapterView.OnItemClickListener itemListener = new AdapterView.OnItemClickListener() {
+    public void stateList() {
+
+
+        final StateAdapter stateAdapter = new StateAdapter(this, R.layout.list_item, states);
+        this.countriesList = findViewById(R.id.countriesList);
+        this.countriesList.setAdapter(stateAdapter);
+
+        AdapterView.OnItemSelectedListener itemSelectedListener = new AdapterView.OnItemSelectedListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+
 
                 State selectedState = (State) parent.getItemAtPosition(position);
-                Toast.makeText(getApplicationContext(), "Был выбран пункт " + selectedState.getName(), Toast.LENGTH_SHORT).show();
+                //State selectedState = (State) parent.getSelectedItemId(id.);
+                ss = position;
+                Toast toast1 = Toast.makeText(getApplicationContext(), selectedState.getName(), Toast.LENGTH_SHORT);
+                toast1.show();
+
+
+            }
+
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
 
             }
         };
 
-       // countriesList.setOnItemSelectedListener((AdapterView.OnItemSelectedListener) itemListener);
-    }
-*/
-
-
-
-
-    public void stateList(Spinner countriesList) {
-
-
-
-        StateAdapter stateAdapter = new StateAdapter(this, R.layout.list_item, states);
-        this.countriesList = findViewById(R.id.countriesList);
-        this.countriesList.setAdapter(stateAdapter);
-
-       // stateAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        State state = (State) ((Spinner) findViewById(R.id.countriesList)).getSelectedItem();
-
-
+        countriesList.setOnItemSelectedListener(itemSelectedListener);
 
     }
 
